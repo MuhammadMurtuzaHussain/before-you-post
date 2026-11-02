@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Before You Post</title>
+  <meta name="description" content="See what a photo gives away (location, device serial, time) before you post it, then strip it. Runs entirely in your browser.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='13' r='6' fill='none' stroke='%23e8553d' stroke-width='3'/><path d='M16 19v9' stroke='%23e8553d' stroke-width='3'/></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Photo metadata check</p>
+      <h1>Before you post.</h1>
+      <p class="lede">Your phone writes more into a photo than the picture. Drop one in to see what it gives away, then download a clean copy. Nothing is uploaded: the file never leaves this tab.</p>
+    </header>
+
+    <label class="drop" id="drop">
+      <input type="file" id="picker" accept="image/*" multiple>
+      <span class="drop-title">Drop photos here</span>
+      <span class="drop-sub">or click to choose. JPEG gets a full read; other formats get redrawn clean.</span>
+    </label>
+
+    <div class="toolbar" id="toolbar" hidden>
+      <p id="summary"></p>
+      <button type="button" id="clean-all">Download all clean copies</button>
+    </div>
+
+    <ul class="results" id="results"></ul>
+
+    <section class="explain">
+      <h2>What gets removed</h2>
+      <dl>
+        <div><dt>Kept</dt><dd>Every pixel, untouched. JPEGs are cleaned byte-for-byte with no re-compression. The colour profile and the "which way is up" flag stay so the photo looks the same.</dd></div>
+        <div><dt>Removed</dt><dd>GPS, timestamps, camera make, model and serial number, owner name, editing software, XMP and IPTC blocks, and hidden comments.</dd></div>
+        <div><dt>Not covered</dt><dd>What is <em>in</em> the picture. A street sign, a house number or a reflection still gives you away.</dd></div>
+      </dl>
+    </section>
+
+    <footer>
+      <p>Open source. No tracking, no server, works offline once loaded.</p>
+    </footer>
+  </main>
+
+  <template id="card">
+    <li class="card">
+      <img class="thumb" alt="">
+      <div class="body">
+        <div class="head">
+          <h3 class="name"></h3>
+          <span class="badge"></span>
+        </div>
+        <ul class="findings"></ul>
+        <div class="actions">
+          <button type="button" class="clean">Download clean copy</button>
+          <a class="map" target="_blank" rel="noopener noreferrer" hidden>Show the location on a map</a>
+        </div>
+      </div>
+    </li>
+  </template>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

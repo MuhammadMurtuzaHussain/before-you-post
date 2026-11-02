@@ -1,0 +1,12 @@
+{
+  "name": "before-you-post",
+  "version": "1.0.0",
+  "description": "See what a photo gives away before you post it, then strip it. Runs entirely in your browser.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "start": "npx --yes serve@14.2.4 ."
+  },
+  "license": "MIT"
+}
